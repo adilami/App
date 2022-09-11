@@ -23,7 +23,6 @@ const App = () => {
             })
         })
     };
-
   return (
     <>
     <div className="main">
@@ -38,7 +37,6 @@ const App = () => {
                    +
                   </div>
               </button>
-             
           </div>  
           <div className='list'>
             <ul style={{listStyleType:'none'}}>

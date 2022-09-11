@@ -39,7 +39,12 @@
 .main{
   width: 100%;
   height: 100vh;
-  background-color: #5f88c9;
+  background : linear-gradient(
+    90deg,
+    rgba(40,16,255,1) 0%,
+    rgba(110,115,255,1) 100%
+  );
+  color: #fff;
   justify-content: center;
   display: flex;
   text-align: center;
@@ -52,7 +57,7 @@
 .center{
   width:25%;
   height: 60vh;
-  background-color: #d0f5f4;
+  background-color: #191c2e;
   border: 2px;
   border-style: solid;
   border-color: black;
@@ -78,7 +83,13 @@ button{
   border-style: dotted;
   border-radius: 100px;
   border-color: black;
-  background-color: #5f88c9;
+  background : linear-gradient(
+    90deg,
+    rgba(40,16,255,1) 0%,
+    rgba(110,115,255,1) 100%
+  );
+  color: #fff;
+  
  
   
 }
@@ -87,7 +98,6 @@ h1{
   font-family: Arial, Helvetica, sans-serif;
 }
 button:hover{
-  background-color: green;
   animation: forwards;
   border: 2px solid;
 }
@@ -111,7 +121,7 @@ input{
   border-bottom: 5px;
   border-radius: 10px;
   border-style: solid;
-  border-color: #5f88c9;
+  border-color: #4334cf;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
 }
