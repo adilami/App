@@ -11,10 +11,15 @@ function App (){
         setInputList(event.target.value);
     };
     const listOfItems = () => {
+        if(inputList===""){
+            window.alert("The text field is empty. Please type a todo.")
+        }
+        else{
         setItems((oldItems) =>{
             return  [...oldItems, inputList];
-        })
+        })}
         setInputList("");
+    
     };
     const deleteItems = (id) => {
         setItems((oldItems) => {
