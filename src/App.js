@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import ToDoList from './ToDoList';
 
-const App = () => {
+function App (){
     const [inputList, setInputList]=useState("");
 
     const [items, setItems]= useState([]);
