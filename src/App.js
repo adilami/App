@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import {'../node_modules/@ajusa/lit/dist/lit.css'}
 import './App.css';
 import ToDoList from './ToDoList';
 
+// To get data from localStorage
+const getLocalItems = () => {
+    let list = localStorage.getItem('list1');
+    console.log(list);
+
+    if(list){
+        return JSON.parse(localStorage.getItem('list1'));
+    }
+    return[];
+
+};
+
 function App (){
     const [inputList, setInputList]=useState("");
 
-    const [items, setItems]= useState([]);
+    const [items, setItems]= useState(getLocalItems());
 
     // const [edit, setedit]= useState({
     //     id:null,
@@ -28,7 +40,9 @@ function App (){
         setInputList("");
     
     };
+    // const editItem = (e) => {
 
+    // };
 
     const deleteItems = (id) => {
         setItems((oldItems) => {
@@ -37,12 +51,21 @@ function App (){
             })
         })
     };
+    const deleteAll = () => {
+        setItems([]);
+    };
   
     const handleSubmit = e => {
         if(e.key === "Enter"){
             listOfItems();
         }
     };
+
+    //Adding Data to local storage
+    useEffect( () => {
+        localStorage.setItem('list1', JSON.stringify(items));
+    }, [items]);
+
     return (
     <>
     <div className="main">
@@ -58,10 +81,13 @@ function App (){
                 <div className='list1'>          
                     <ul style={{listStyleType:'none'}}>
                         {items.map( (itemval, index) => {
-                        return <ToDoList key={index} id={index} text = {itemval} onSelect ={deleteItems}/>;
+                        return <ToDoList key={index} id={index} text = {itemval}  onSelect ={deleteItems}/>;
                         })}
                     </ul>
                 </div>
+            </div>
+            <div className='rmall'>
+                    <button className='remove' onClick={deleteAll}>Remove All</button>
             </div>
         </div>
   </div>

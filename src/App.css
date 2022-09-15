@@ -67,6 +67,7 @@
   flex-direction: column;
   box-shadow: 2px 2px black;
   justify-content:flex-start;
+  
  
   
   /* overflow-y: scroll;
@@ -136,7 +137,7 @@ input{
   text-align: center;
 }
 .list{
-  height: 100px;
+  height: 350px;
   width:500px;
   display: flex;
   justify-content: flex-start;
@@ -202,7 +203,7 @@ input{
 }
 .list1{
   width:100%;
-  height: 45vh;
+  height: 36vh;
   overflow-y: scroll;
   overflow-x: hidden;
   
@@ -226,5 +227,19 @@ input{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+.remove{
+  height: 4vh;
+  width: 6vw;
+  border-radius: 8px;
+  justify-content:space-between;
+}
+.rmall{
+  display: flex;
+  height: 100vh;
+
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
 }
