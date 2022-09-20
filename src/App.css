@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 .App {
   text-align: center;
 }
@@ -13,9 +14,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 *{
   margin: 0;
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -39,6 +42,7 @@
     transform: rotate(360deg);
   }
 }
+
 .main{
   width: 100%;
   height: 100vh;
@@ -54,7 +58,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 .center{
-  /* width:25%; */
   height: 60vh;
   background-color: #262a45;
   border: 2px;
@@ -67,18 +70,15 @@
   flex-direction: column;
   box-shadow: 2px 2px black;
   justify-content:flex-start;
-  
- 
-  
-  /* overflow-y: scroll;
-  white-space: nowrap; */
 }
+
 .center1{
   padding: 12px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
+
 button{
   width: 47px;
   height: 47px;
@@ -93,18 +93,18 @@ button{
     rgba(110,115,255,1) 100%
   );
   color: #fff;
-  
- 
-  
 }
+
 h1{
   font-size: 32px;
   font-family: 'Fredoka One', cursive;
 }
+
 button:hover{
   animation: forwards;
   border: 2px solid;
 }
+
 .button1{
   width: 32px;
   height: 32px;
@@ -136,21 +136,18 @@ input{
   font-size: 20px;
   text-align: center;
 }
+
 .list{
   height: 350px;
   width:500px;
   display: flex;
   justify-content: flex-start;
   padding-top: 12px;
-
-
- 
 }
+
 .ul{
   margin-top: 30px;
-  
-  }
-
+}
 
 .ul li{
   font-size: 20px;
@@ -160,22 +157,20 @@ input{
   display: flex;
   align-items: center;
   list-style-type: none;
-
 }
+
 .btn1{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-align: center;
 }
+
 .btn2{
   width: 386px;
   height: 50px;
-
   display: flex;
   flex-direction: row;
-  /* justify-content: ; */
   align-items: center;
-  /* background-color: white; */
   border: 2px solid white;
   border-radius: 12px;
   padding: 10px;
@@ -183,37 +178,39 @@ input{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }
 .check{
   width: 20px;
   height:20px;
-
 }
+
 .cross{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .list .check:checked{
   text-decoration: line-through;
 }
+
 ::-webkit-scrollbar {
   width: 20px;
 }
+
 .list1{
   width:100%;
   height: 36vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  
 }
+
 .namec{
   height: 20px;
   width: 35vw;
   display: flex;
   flex-direction: row;
- align-items: center;
+  align-items: center;
   justify-content: space-between;
   padding-left: 10px;
 }
@@ -222,23 +219,26 @@ input{
   text-decoration: line-through;
   font-weight: bold;
 }
+
 .buttonCombo{
+  
   width:4vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
 .remove{
   height: 4vh;
   width: 6vw;
   border-radius: 8px;
   justify-content:space-between;
 }
+
 .rmall{
   display: flex;
   height: 100vh;
-
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
