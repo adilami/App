@@ -1,128 +1,178 @@
-import React, { useState, useEffect } from 'react';
-import "./App.css"
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import ActionButtons from "./components/ActionButtons";
 
 // To get data from localStorage
 const getLocalItems = () => {
-    let list = localStorage.getItem('list1');
-    console.log(list);
-    if(list){
-        return JSON.parse(localStorage.getItem('list1'));
-    }
-    return[];
+  let list = localStorage.getItem("list1");
+  console.log(list);
+  if (list) {
+    return JSON.parse(localStorage.getItem("list1"));
+  }
+  return [];
 };
 
-function App (){
-    const [inputList, setInputList]=useState("");
-    const [items, setItems]= useState(getLocalItems());
-    const [toggleSubmit, settoggleSubmit]=useState(true);
-    const [edit, setedit]= useState(null);
+function App(prop) {
+  const [inputList, setInputList] = useState("");
+  const [items, setItems] = useState(getLocalItems());
+  const [toggleSubmit, settoggleSubmit] = useState(false);
+  const [edit, setedit] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
+ 
 
-    const itemEvent = (event)=>{
-        setInputList(event.target.value);
-        };
-    const listOfItems = () => {
-        if(inputList===""){
-            window.alert("The text field is empty. Please type a todo.")
-        }
-        else if(inputList && !toggleSubmit){
-            setItems(
-                items.map((itemval)=>{
-                    if(itemval.id === edit){
-                        return{...itemval, name:inputList}
-                    }
-                    return itemval;
-                })
-            )
-            settoggleSubmit(true);
-            setInputList("");
-            setedit(null);
-        }
-        else{
-            const allInput = { id: new Date().getTime().toString(), name:inputList };
-            setItems([...items, allInput]);
-            setInputList("");   
-        }
-        };
 
-    const deleteItems = (index) => {
-        setItems((items) => {
-            return items.filter((itemval) =>{
-                return index!==itemval.id;
-            })
+  const handleItemChange = (event) => {
+    setInputList(event.target.value);
+  };
+  const addItem = () => {
+    if (inputList === "") {
+      window.alert("The text field is empty. Please type a todo.");
+    } else if (inputList && toggleSubmit) {
+      setItems(
+        items.map((itemval) => {
+          if (itemval.id === edit) {
+            return { ...itemval, name: inputList };
+          }
+          return itemval;
         })
-    };
+      );
+      settoggleSubmit(false);
+      setInputList("");
+      setedit(null);
+    } else {
+      const allInput = { id: new Date().getTime().toString(), name: inputList };
+      setItems([...items, allInput]);
+      setInputList("");
+    }
+  };
 
-    const deleteAll = () => {
-        setItems([]);
-        window.alert("Every to-do list is deleted.");
-    };
+  const deleteItem = (index) => {
+    setItems((items) => {
+      return items.filter((itemval) => {
+        return index !== itemval.id;
+      });
+    });
+  };
 
-    const editItems = (id) => {
-        let newEditItem = items.find((itemval) =>{
-            return itemval.id === id
-        });
-        console.log(newEditItem);
-        settoggleSubmit(false);
-        setInputList(newEditItem.name);
-        setedit(id);
-    };
-  
-    const handleSubmit = (e) => {
-        if(e.key === "Enter"){
-            listOfItems();
+  const deleteAll = () => {
+    setItems([]);
+    window.alert("Every to-do list is deleted.");
+  };
+
+  const editItems = (id) => {
+    let newEditItem = items.find((itemval) => {
+      return itemval.id === id;
+    });
+    settoggleSubmit(true);
+    setInputList(newEditItem.name);
+    setedit(id);
+  };
+
+  const handleSubmit = (e) => {
+    if (e.key === "Enter") {
+      addItem();
+    }
+  };
+
+  //Adding Data to local storage
+  useEffect(() => {
+    localStorage.setItem("list1", JSON.stringify(items));
+  }, [items]);
+
+//   const [complete, setcomplete] = useState(false);
+  const setDone = (id) => {
+    // 1
+    setSelectedIds((temp)=>{
+       if(temp.includes(id)){
+            return temp.filter(temp=>{
+                return temp!==id
+       })
+
         }
-    };
-
-    //Adding Data to local storage
-    useEffect( () => {
-        localStorage.setItem('list1', JSON.stringify(items));
-        }, [items]);
-
-    const [complete, setcomplete] = useState(false);
-    const setDone = () =>{
-        setcomplete(!complete);
+       else{
+            return [...temp,id];
         }
-    return (
-        <>
-            <div className="main">
-                <div className='center'>
-                    <h1>To-Do List</h1>
-                    <div className='center1'>      
-                        <input type='text' placeholder='Add a to-do' value={inputList} onChange={itemEvent} onKeyPress={handleSubmit}/>
-                        {
-                            toggleSubmit ? <button onClick={listOfItems}><i class="fa-solid fa-plus" title='Add an Item'></i></button> : <button /*className="button1"*/ onClick={listOfItems} title="Edit this todo"><i class="fa fa-pen-to-square"></i></button>
-                        }
-                        
-                    </div>  
-                    <div className='list'>
-                        <div className='list1'>          
-                            <ul style={{listStyleType:'none'}}>
-                            {items.map( (elem) => {
-                                return(
-                                    <>
-                                        <div className="btn2" key={elem.id}>
-                                            <input className="check" type="checkbox" onClick={setDone}/>
-                                            <div className="namec">
-                                            <li className={complete ? 'doneItem' : ''}>{elem.name}</li>
-                                                <div className="buttonCombo">
-                                                    <button className="button1" onClick={()=>editItems(elem.id)} title="Edit this todo"><i class="fa fa-pen-to-square"></i></button>
-                                                    <button className="button1" onClick={() => deleteItems(elem.id)}  title="Remove this todo">
-                                                    <i class="fa-solid fa-trash"></i></button>
-                                                </div> 
-                                            </div>
-                                        </div>
-                                    </>
-                                )})}
-                            </ul>
+    
+    
+    
+        //check if that id is inside selectedIds, remove chaina bhane add id
+    })
+}
+
+
+
+
+  return (
+    <>
+      <div className="main">
+        <div className="center">
+          <h1>To-Do List</h1>
+          <div className="center1">
+            <input
+              type="text"
+              placeholder="Add a to-do"
+              value={inputList}
+              onChange={handleItemChange}
+              onKeyPress={handleSubmit}
+            />
+            {toggleSubmit ? (
+              <button
+                /*className="button1"*/ onClick={addItem}
+                title="Edit this todo"
+              >
+                <i className="fa fa-pen-to-square"></i>
+              </button>
+            ) : (
+              <button onClick={addItem}>
+                <i className="fa-solid fa-plus" title="Add an Item"></i>
+              </button>
+            )}
+          </div>
+          <div className="list">
+            <div className="list1">
+              <ul style={{ listStyleType: "none" }}>
+                {items.map((elem,id) => {
+                  return (
+                    <>
+            
+                      <div className="btn2">
+                        <input
+                          className="check"
+                          type="checkbox"
+                          onClick={()=>setDone(elem.id)}
+                          title="Click here if this to-do is completed"
+                        />
+                        <div className="namec">
+                          <li className={selectedIds.includes(elem.id) ? "doneItem" : ""}>
+                            {elem.name}
+                          </li>
+                          
+                          <ActionButtons
+                            editItems={editItems}
+                            deleteItems={deleteItem}
+                            elem={elem}
+                          />
                         </div>
-                    </div>
-                    <div className='rmall'>
-                        <button className='remove' onClick={deleteAll} title="Remove all todo">Remove All</button>
-                    </div>
-                </div>
+                      </div>
+                    </>
+                  );
+                })}
+              </ul>
             </div>
-        </>
-    );
-};
+          </div>
+          <div className="rmall">
+            <button
+              className="remove"
+              onClick={deleteAll}
+              title="Remove all todo"
+            >
+              Remove All
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 
-export default App
+export default App;

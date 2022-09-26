@@ -180,8 +180,8 @@ input{
   text-overflow: ellipsis;
 }
 .check{
-  width: 20px;
-  height:20px;
+  width: 30px;
+  height:30px;
 }
 
 .cross{
@@ -218,6 +218,7 @@ input{
 .doneItem {
   text-decoration: line-through;
   font-weight: bold;
+  /* background-color: red; */
 }
 
 .buttonCombo{
