@@ -55,9 +55,19 @@ function App(prop) {
   };
 
   const deleteAll = () => {
-    setItems([]);
-    window.alert("Every to-do list is deleted.");
-  };
+    if(items.length===0){
+      window.alert("There is no to-do to delete.")
+    }
+    else if(items.length===selectedIds.length){
+      setItems([]);
+      window.alert("Every to-do list is completed. Proceed to remove all?");
+    }
+    else{
+      //count items , count selectedId   
+      const leftItem = items.length-selectedIds.length;
+      window.alert("There are "+leftItem+" to-do remaining");
+    }
+    }
 
   const editItems = (id) => {
     let newEditItem = items.find((itemval) => {
@@ -145,7 +155,7 @@ function App(prop) {
                         <div className="namec">
                           <li className={selectedIds.includes(elem.id) ? "doneItem" : ""}>
                             {elem.name}
-                          </li>
+                          </li> 
                           
                           <ActionButtons
                             editItems={editItems}

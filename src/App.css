@@ -98,6 +98,7 @@ button{
 h1{
   font-size: 32px;
   font-family: 'Fredoka One', cursive;
+  text-shadow:3px 3px gray;
 }
 
 button:hover{
